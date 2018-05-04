@@ -1,0 +1,31 @@
+---
+- name: Build Server  
+  hosts: 172.17.177.21
+  become: yes
+  vars:
+    jenkins_path: /var/lib/jenkins
+    jenkins_user: admin
+    jenkins_password: admin
+    jenkins_url: http://172.17.177.21:8080
+    jenkins_params:
+      url_username: "admin"
+      url_password: "admin"
+      url: "{{jenkins_url}}"
+      validate_certs: no
+    packages:
+       - npm
+       - debconf-utils
+       - git
+       - gcc
+       - make
+       - python-dev
+       - python-pip
+       - python-setuptools
+       - python-lxml
+       - vim
+       - libffi-dev
+       - libssl-dev
+       - libxml2-dev 
+       - libxslt1-dev 
+       - libjpeg8-dev 
+       - zlib1g-dev

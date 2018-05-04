@@ -1,0 +1,7 @@
+
+[nodes]
+aws_server0   ansible_ssh_host=34.216.65.54  ansible_ssh_user=ubuntu ansible_ssh_private_key_file=DevOp.pem
+aws_server2   ansible_ssh_host=52.39.128.85  ansible_ssh_user=ubuntu ansible_ssh_private_key_file=DevOp.pem
+aws_server3   ansible_ssh_host=34.209.57.76  ansible_ssh_user=ubuntu ansible_ssh_private_key_file=DevOp.pem
+aws_server4   ansible_ssh_host=35.164.205.33  ansible_ssh_user=ubuntu ansible_ssh_private_key_file=DevOp.pem
+aws_server1   ansible_ssh_host=52.39.29.15  ansible_ssh_user=ubuntu ansible_ssh_private_key_file=DevOp.pem

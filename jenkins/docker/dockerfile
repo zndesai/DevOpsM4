@@ -1,0 +1,8 @@
+FROM ubuntu:latest
+COPY git git
+COPY node node
+COPY mongodb mongodb
+COPY nginx nginx
+COPY wrapper.sh wrapper.sh
+CMD ./wrapper.sh
+

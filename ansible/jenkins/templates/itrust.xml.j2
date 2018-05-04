@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+<actions/>
+   <description></description>
+   <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM" />
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+        <hudson.tasks.Shell>
+                <command>rm -rf iTrust-v23
+                        git clone https://github.ncsu.edu/engr-csc326-staff/iTrust-v23.git
+                        cd ./iTrust-v23
+                        ls
+                        pwd
+                        mvn compile -DskipTests -Dmaven.javadoc.skip=true</command>
+
+        </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+ </project>
+

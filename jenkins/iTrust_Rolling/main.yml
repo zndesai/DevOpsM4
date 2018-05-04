@@ -1,0 +1,12 @@
+---
+- name: Deploying iTrust Rolling
+  hosts: nodes
+  serial: 1
+  max_fail_percentage: 0
+  become: yes
+  roles:
+    - docker
+    - jdk
+    - mysql
+    - deployment
+    - newrelic

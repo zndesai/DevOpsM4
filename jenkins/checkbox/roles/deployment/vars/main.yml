@@ -1,0 +1,15 @@
+---
+git_repo: github.com/rmehta4/checkbox.io.git
+git_repo_zndesai: github.ncsu.edu/zndesai/checkbox.git
+# github.ncsu.edu/rmehta4/checkBox.git
+home_path: /home/vagrant
+nginx_sites_path: /etc/nginx/sites-enabled/default
+nginx_config_path: /etc/nginx/nginx.conf
+env_vars: 
+    MONGO_PORT: "3002"
+    MONGO_IP: "localhost"
+    MONGO_USER: "admin"
+    MONGO_PASSWORD: "admin"
+    MAIL_USER: "iocheckbox"
+    MAIL_PASSWORD: "iamabotuser"
+    MAIL_SMTP: "smtp.gmail.com"

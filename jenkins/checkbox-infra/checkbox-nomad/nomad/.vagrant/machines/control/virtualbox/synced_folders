@@ -1,0 +1,1 @@
+{"virtualbox":{"/ssh":{"guestpath":"/ssh","hostpath":"/home/rutvij/Documents/DevOps/nomad/techtalk/code/.vagrant/machines","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/rutvij/Documents/DevOps/nomad/techtalk/code","disabled":false,"__vagrantfile":true}}}

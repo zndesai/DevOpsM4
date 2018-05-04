@@ -1,0 +1,55 @@
+---
+- name: Configure NewRelic apt repo
+  become: yes
+  shell: sudo echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | sudo tee /etc/apt/sources.list.d/newrelic.list
+
+- name: Trust NewRelic Key
+  become: yes
+  shell: sudo wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+
+- name: Trust NewRelic Key
+  become: yes
+  shell: sudo wget -O- https://download.newrelic.com/548C16BF.gpg | sudo apt-key add -
+  
+
+- name: Update Local Package List
+  become: yes
+  shell: sudo apt-get update
+
+- name: Install serves for Linux
+  become: yes
+  shell: sudo apt-get install newrelic-sysmond
+
+- name: Add license key to config file (See /etc/newrelic/nrsysmond.cfg for other config options)
+  become: yes
+  shell: sudo nrsysmond-config --set license_key=86c109347387bbb05305e32bc0f8dd576202e3eb
+
+- name: Start the daemon as Root
+  become: yes
+  shell: sudo /etc/init.d/newrelic-sysmond start
+  
+#- name: Start the daemon as Root
+#  become: yes
+#  shell: sudo echo "license_key: 86c109347387bbb05305e32bc0f8dd576202e3eb" | sudo tee -a /etc/newrelic-infra.yml
+
+- name: Copy infra.yml
+  become: yes
+  copy:
+    src: ../templates/newrelic-infra.yml
+    dest: /etc
+  
+- name: Start the daemon as Root
+  become: yes
+  shell: sudo curl https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg | sudo apt-key add -
+  
+- name: Start the daemon as Root
+  become: yes
+  shell: sudo printf "deb [arch=amd64] http://download.newrelic.com/infrastructure_agent/linux/apt trusty main" | sudo tee -a /etc/apt/sources.list.d/newrelic-infra.list
+  
+- name: Update Local Package List
+  become: yes
+  shell: sudo apt-get update
+
+- name: Install serves for Linux
+  become: yes
+  shell: sudo apt-get install newrelic-infra -y

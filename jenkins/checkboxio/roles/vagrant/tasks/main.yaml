@@ -1,0 +1,49 @@
+- name: download vagrant
+ #      shell: yes | sudo apt-get install vagrant/vivid
+  shell: wget https://releases.hashicorp.com/vagrant/1.8.5/vagrant_1.8.5_x86_64.deb
+  become: true
+
+- name: install vagrant
+  shell: sudo dpkg -i vagrant_1.8.5_x86_64.deb
+  become: true
+
+- name: Install virtualbox
+  shell: yes | sudo apt-get install virtualbox
+  become: true
+
+#- name: Initialise VM
+#  shell: vagrant init ubuntu/trusty32 --provider virtualbox
+#  become: true
+
+#- name: Modifying Vagrantfile
+#  lineinfile:
+#    path: /home/vagrant/mySync/checkboxio/Vagrantfile
+#    insertbefore: "end"
+#    line: "{{ item.line }}"
+#  with_items:
+#    - { line: '  config.vm.network "forwarded_port", guest: 8081, host: 8081' }
+#    - { line: '  config.vm.network "private_network", ip: "192.186.90.90"' }
+#    - { line: '  config.vm.provider "virtualbox" do |vb|' }
+#    - { line: "     vb.customize ['modifyvm', :id,'--cpus', '1','--nictype1', 'virtio']" }
+#    #- { line: "     vb.customize ['modifyvm', :id, '--nictype2', 'virtio' ]" }
+#    - { line: "     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']" }
+#    - { line: "     vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']" }
+#    #- { line: "     vb.memory = 1024" }
+#    - { line: "  end" }
+#  become: true
+
+- name: Power up VM
+  shell: vagrant up
+  become: true
+
+- name: create dir
+  shell: mkdir /home/vagrant/mySync/checkboxio/keys
+  become: true
+
+- name: Get key
+  shell: sudo cat /home/vagrant/mySync/checkboxio/.vagrant/machines/default/virtualbox/private_key >> /home/vagrant/mySync/checkboxio/keys/checkbox.key
+  become: true
+
+- name: ch modify
+  shell: sudo chmod 600 /home/vagrant/mySync/checkboxio/keys/checkbox.key
+  become: true

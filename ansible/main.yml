@@ -1,0 +1,20 @@
+---   
+- name: Build Server  
+  hosts: jenkins
+  become: yes
+  vars:
+    jenkins_path: /var/lib/jenkins
+    jenkins_user: admin
+    jenkins_password: admin
+    jenkins_url: http://172.17.177.21:8080
+    jenkins_params:
+      url_username: "admin"
+      url_password: "admin"
+      url: "{{jenkins_url}}"
+      validate_certs: no
+   
+  roles:
+    - mysql 
+    - nodejs
+    - jenkins
+    - postbuild     

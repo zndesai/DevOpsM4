@@ -1,0 +1,67 @@
+---
+- hosts: nomad_instances
+  become: yes
+
+  pre_tasks:
+
+  - name: Disable Firewall
+    service: name=ufw state=stopped
+
+  - name: Install HTTPS Apt Packages
+    apt: name={{ item }} update_cache=yes
+    with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+  - name: Add Docker GPG Key
+    apt_key: url=https://apt.dockerproject.org/gpg
+
+  - name: Adding docker apt repository
+    apt_repository:
+      repo: "deb https://apt.dockerproject.org/repo ubuntu-trusty main"
+      update_cache: yes
+
+  - name: Installing Docker
+    apt:
+      name: docker-engine
+      update_cache: yes
+
+  - name: Adding vagrant to docker group
+    user:
+      name: vagrant
+      groups: docker
+      append: yes
+
+  - name: Getting docker compose
+    get_url:
+      url: "https://github.com/docker/compose/releases/download/1.11.1/docker-compose-Linux-x86_64"
+      dest: "/usr/local/bin/docker-compose"
+      mode: 0755
+
+  - name: Enable Docker at Startup
+    service: name=docker state=started enabled=yes
+
+  - name: add user mod to docker
+    command: usermod -aG docker {{ ansible_user }}
+
+  - name: Install pip
+    apt: name=python-pip
+
+  - name: Install Python Packages
+    pip: name={{ item }}
+    with_items:
+    - docker-py
+
+  - name: Pull Docker Node Image
+    docker_image: name=node tag=8
+
+  - name: Copy Job File
+    become: no
+    copy: src=templates/service.nomad dest=/home/{{ ansible_user }}/service.nomad
+
+  roles:
+    - role: brianshumate.nomad
+      nomad_bind_address: 0.0.0.0
+      nomad_docker_enable: yes

@@ -1,0 +1,15 @@
+---
+git_repo: https://github.com/chrisparnin/checkbox.io.git
+home_path: /home/vagrant
+nginx_sites_path: /etc/nginx/sites-enabled/default
+nginx_config_path: /etc/nginx/nginx.conf
+GIT_USER: "rmehta4"
+GIT_TOKEN: "4d8cbd3e8ec70330c310edb86b6b174ae22ec8d2"
+env_vars: 
+    MONGO_PORT: "3002"
+    MONGO_IP: "localhost"
+    MONGO_USER: "admin"
+    MONGO_PASSWORD: "admin"
+    MAIL_USER: "iocheckbox"
+    MAIL_PASSWORD: "iamabotuser"
+    MAIL_SMTP: "smtp.gmail.com"

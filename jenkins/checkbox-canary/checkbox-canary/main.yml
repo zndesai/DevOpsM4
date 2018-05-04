@@ -1,0 +1,11 @@
+---
+- name: Deploying checkbox.io
+  hosts: nodes
+  become: yes
+  roles:
+    - node
+    - mongodb
+    - nginx
+    - deployment
+    - newrelic
+

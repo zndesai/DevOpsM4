@@ -1,0 +1,3 @@
+nomad_dir: "{{ ansible_env.HOME }}/nomad"
+jobs_dir: "{{ nomad_dir }}/jobs"
+scripts_dir: "{{ nomad_dir }}/scripts"

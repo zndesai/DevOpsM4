@@ -1,0 +1,8 @@
+- name: Deploying checkbox.io
+  hosts: aws_server0
+  become: yes
+  roles:
+    #- node
+    #- mongodb
+    #- nginx
+    - deployment
